@@ -8,6 +8,9 @@ const Search=({onAddFavorites,currentFav})=>{
     const [result, setResult]=useState([])
     const [searchInput, setSearchInput]= useState('')
     const [url, setUrl]=useState('')
+    
+    const [status,setStatus] = useState({error: false,
+        loading: false})
 
     const onSearchForShow=(e)=> {
         e.preventDefault()
@@ -15,20 +18,34 @@ const Search=({onAddFavorites,currentFav})=>{
     }
 
     useEffect(()=>{
-        fetch(url).then(response => response.json()).then(data =>setResult(data.map(item => item.show)))
+        if(url)
+        {
+            setStatus({loading: true, error: false})
+            fetch(url)
+            .then(response => response.json())
+            .then(data =>{
+                setResult(data.map(item => item.show))
+                setStatus(({loading: false, error: false}))
+            })
+            .catch(err => setStatus({error: true, loading: false}))
+        }
+       
     },[url])
 
-    const currentFavorites = currentFav.map(item => item.id)
+    const currentFavorites = currentFav.length > 0 && currentFav.map(item => item.id)
+    if(status.error)
+        return<div> Some Error Ocuured. Please try again</div>
+    else
     return (
         <Fragment>
             <SearchBar 
             value={searchInput} 
             onChangeHandler={(e) => setSearchInput(e.target.value)} 
             onClickHandler={onSearchForShow} 
-            submitEnabled={true}/>
-            {
+            submitEnabled={!status.loading}/>
+            {status.loading ? <p> Loading...</p>:
             result && result.length > 0 && 
-                <div className="list-container">
+                (<div className="list-container">
                     { 
                         result.map(show => 
                         <ShowCard key ={show.id} 
@@ -37,7 +54,7 @@ const Search=({onAddFavorites,currentFav})=>{
                         actionName={`ADD TO FAVORITES`} 
                         actionDisabled={currentFavorites.includes(show.id)}/>) 
                     }
-                </div>
+                </div>)
             }
         </Fragment>
     )
