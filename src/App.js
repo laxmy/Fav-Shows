@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{ useEffect, useState} from 'react';
+import Tabs from './components/Tabs/Tabs'
+import Search from './components/Search/search'
+import Favorites from './components/Favorites/Favorites'
 import './App.css';
 
+export const localStorageKey = "favorites"
+
 function App() {
+
+  const [fav, setFav] = useState(JSON.parse(localStorage.getItem(localStorageKey)) || [])
+
+  const removeFavorites = (show) => {
+    let items = fav.filter(item => item.id !== show.id);
+    setFav(items)
+  }
+
+  const addFavorites =(show) => {
+    setFav(currFav => [...currFav,show])
+  }
+
+  useEffect(()=> {
+    localStorage.setItem("favorites",JSON.stringify(fav))
+},[fav])
+
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-header">  
+       <h5>Fav Show Tracker</h5>
       </header>
+      <Tabs> 
+          <div label="SEARCH"> 
+             <Search onAddFavorites={addFavorites} currentFav={fav}/>
+          </div> 
+          <div label="FAVORITES"> 
+            <Favorites onRemoveFavorites ={removeFavorites} currentFav={fav}/>
+          </div> 
+     </Tabs> 
     </div>
   );
 }

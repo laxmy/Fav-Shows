@@ -1,0 +1,74 @@
+.SearchBarWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
+}
+.formWrapper{
+    background-color: #ebe9eb;
+    width: 90%;
+}
+.InputFieldWrapper{
+    flex:2;
+}
+.ButtonWrapper{
+    flex:1;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.InputFieldWrapper input {
+    display: block;
+    margin-top: .5rem;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    font-size: 1.875rem;
+    color: #333333;
+    border: none;
+    border-bottom: 2px solid #d6d6d6;
+}
+.InputFieldWrapper input::placeholder {
+    color: #adadad;
+    opacity: 1;
+    line-height:normal !important;
+}
+.InputFieldWrapper input:focus,
+.InputFieldWrapper input:active {
+    outline: none;
+}
+.InputFieldWrapper label {
+    color: #606060;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: +.5px;
+}
+.ButtonWrapper button {
+    padding: 0.2em;
+    background-color: #802bb1;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    width: 80%;
+}
+.ButtonWrapper button:hover {
+    cursor: pointer;
+}
+.ButtonWrapper button:active,
+.ButtonWrapper button:focus {
+    outline: none;
+    border: 1px solid #333866
+}
+
+.ButtonWrapper button:disabled{
+  color: #e3dede;
+}
+
+.InputError{
+    display: block;
+    font-size: 0.5em;
+}

@@ -2,8 +2,18 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", {
+    value: {
+      getItem: jest.fn(() => null),
+      setItem: jest.fn(() => null)
+    },
+    writable: true
+  });
+})
+
+it("Should call localStorage getItem on render", () => {
+  render(<App />);
+  expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
 });
+

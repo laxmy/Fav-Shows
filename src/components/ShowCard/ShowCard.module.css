@@ -1,0 +1,67 @@
+.showCard{
+    width: 70%;
+    height: 300px;
+    border-radius: 1.8em;
+    background-color: white;
+    box-shadow:1px 3px rgba(219, 218, 218, 0.3);
+    margin: 2%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4%;
+}
+
+.cardImage{
+  border-radius: 1.8em;
+}
+
+.noImage{
+    height: 90%;
+    background-color: #d3d3d3;
+    color: grey;
+    flex: 1;
+    border-radius: 1.8em;
+}
+.cardContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    text-overflow: ellipsis;
+    flex: 2;
+}
+
+.cardContent h4{
+    text-transform: uppercase;
+    color: #802bb1; 
+    flex: 2;
+}
+
+.cardContent p{
+    text-overflow: ellipsis;
+    height: 60%;
+}
+
+.showGenre{
+ display: inline;
+ color:  #09c492;
+ margin-right: 3%;
+ text-transform: uppercase;
+}
+
+.action{
+    background-color: #2ee8b6;
+    height: 50px;
+    border: none;
+    width: 100px;
+    border-radius: 0.5em;
+}
+
+.action:focus, .action:active{
+    outline: none;
+    border: 2px solid #09c492;
+    color: #2e3047;
+}
