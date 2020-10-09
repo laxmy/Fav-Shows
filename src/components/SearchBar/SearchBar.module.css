@@ -37,6 +37,7 @@
 .InputFieldWrapper input:focus,
 .InputFieldWrapper input:active {
     outline: none;
+    background-color: white;
 }
 .InputFieldWrapper label {
     color: #606060;

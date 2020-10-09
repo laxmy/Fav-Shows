@@ -14,7 +14,7 @@ const Search=({onAddFavorites,currentFav})=>{
 
     const onSearchForShow=(e)=> {
         e.preventDefault()
-        setUrl(`http://api.tvmaze.com/search/shows?q=${searchInput}`)
+        setUrl(`https://api.tvmaze.com/search/shows?q=${searchInput}`)
     }
 
     useEffect(()=>{
@@ -52,7 +52,7 @@ const Search=({onAddFavorites,currentFav})=>{
                         show={show} 
                         action={onAddFavorites} 
                         actionName={`ADD TO FAVORITES`} 
-                        actionDisabled={currentFavorites.includes(show.id)}/>) 
+                        actionDisabled={currentFavorites && currentFavorites.indexOf(show.id)!== -1}/>) 
                     }
                 </div>)
             }

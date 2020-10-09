@@ -15,6 +15,7 @@
 
 .cardImage{
   border-radius: 1.8em;
+  flex: 1;
 }
 
 .noImage{
